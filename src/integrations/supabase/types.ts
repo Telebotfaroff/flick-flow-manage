@@ -14,7 +14,86 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      movies: {
+        Row: {
+          banner_url: string | null
+          category_id: string | null
+          created_at: string
+          description: string | null
+          download_url: string | null
+          duration: number | null
+          id: string
+          poster_url: string | null
+          rating: number | null
+          title: string
+          trailer_url: string | null
+          updated_at: string
+          views: number | null
+          year: number | null
+        }
+        Insert: {
+          banner_url?: string | null
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          download_url?: string | null
+          duration?: number | null
+          id?: string
+          poster_url?: string | null
+          rating?: number | null
+          title: string
+          trailer_url?: string | null
+          updated_at?: string
+          views?: number | null
+          year?: number | null
+        }
+        Update: {
+          banner_url?: string | null
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          download_url?: string | null
+          duration?: number | null
+          id?: string
+          poster_url?: string | null
+          rating?: number | null
+          title?: string
+          trailer_url?: string | null
+          updated_at?: string
+          views?: number | null
+          year?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "movies_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
