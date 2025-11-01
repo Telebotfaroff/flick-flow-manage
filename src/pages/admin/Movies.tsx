@@ -15,6 +15,7 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -95,23 +96,28 @@ export default function Movies() {
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <VisuallyHidden>
-                <DialogTitle>
-                  {editingMovie ? "Edit Movie" : "Add New Movie"}
-                </DialogTitle>
-              </VisuallyHidden>
-            </DialogHeader>
-            <MovieForm
-              movie={editingMovie}
-              categories={categories}
-              onClose={() => {
-                setOpen(false);
-                setEditingMovie(null);
-              }}
-            />
-          </DialogContent>
-        </Dialog>
+              <DialogHeader>
+                <VisuallyHidden>
+                  <DialogTitle>
+                    {editingMovie ? "Edit Movie" : "Add New Movie"}
+                  </DialogTitle>
+                  <DialogDescription>
+                    {editingMovie
+                      ? "Update the details of the existing movie."
+                      : "Create a new movie to add to your collection."}
+                  </DialogDescription>
+                </VisuallyHidden>
+              </DialogHeader>
+              <MovieForm
+                movie={editingMovie}
+                categories={categories}
+                onClose={() => {
+                  setOpen(false);
+                  setEditingMovie(null);
+                }}
+              />
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 

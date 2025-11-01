@@ -42,44 +42,47 @@ export default function Dashboard() {
       title: "Total Movies",
       value: moviesCount,
       icon: Film,
-      color: "text-primary",
+      color: "text-blue-400",
+      borderColor: "border-blue-400",
     },
     {
       title: "Categories",
       value: categoriesCount,
       icon: Grid3x3,
-      color: "text-accent",
+      color: "text-purple-400",
+      borderColor: "border-purple-400",
     },
     {
       title: "Total Views",
       value: totalViews.toLocaleString(),
       icon: Eye,
-      color: "text-success",
+      color: "text-green-400",
+      borderColor: "border-green-400",
     },
   ];
 
   return (
     <div className="space-y-6">
-      <Card>
+      <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700">
         <CardHeader>
-          <CardTitle className="text-2xl sm:text-3xl">Dashboard</CardTitle>
+          <CardTitle className="text-2xl sm:text-3xl font-bold">Dashboard</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">Overview of your movie platform</p>
+          <p className="text-gray-400">Overview of your movie platform</p>
         </CardContent>
       </Card>
 
       <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
         {stats.map((stat) => (
-          <Card key={stat.title}>
+          <Card key={stat.title} className={`bg-gray-800/50 backdrop-blur-sm border-t-4 ${stat.borderColor}`}>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
+              <CardTitle className="text-sm font-medium text-gray-400">
                 {stat.title}
               </CardTitle>
               <stat.icon className={`h-5 w-5 ${stat.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl sm:text-3xl font-bold text-foreground">{stat.value}</div>
+              <div className="text-2xl sm:text-3xl font-bold">{stat.value}</div>
             </CardContent>
           </Card>
         ))}

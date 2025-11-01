@@ -21,13 +21,13 @@ export default function AdminLayout() {
 
   if (!isAuthenticated) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
-        <form onSubmit={handleSubmit} className="p-8 space-y-4 bg-card rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-center text-foreground">Admin Access</h2>
+      <div className="flex items-center justify-center min-h-screen bg-gray-900">
+        <form onSubmit={handleSubmit} className="p-8 space-y-4 bg-gray-800 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-center text-white">Admin Access</h2>
           <div>
             <label
               htmlFor="username"
-              className="block mb-2 text-sm font-medium text-foreground"
+              className="block mb-2 text-sm font-medium text-gray-300"
             >
               Username
             </label>
@@ -36,13 +36,13 @@ export default function AdminLayout() {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-2 border rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
             <label
               htmlFor="password"
-              className="block mb-2 text-sm font-medium text-foreground"
+              className="block mb-2 text-sm font-medium text-gray-300"
             >
               Password
             </label>
@@ -51,7 +51,7 @@ export default function AdminLayout() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-2 border rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           {error && <p className="text-sm text-red-500">Invalid username or password</p>}
@@ -68,12 +68,12 @@ export default function AdminLayout() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
+      <div className="min-h-screen flex w-full bg-gray-900 text-white">
         <AdminSidebar />
         <div className="flex-1 flex flex-col">
-          <header className="h-14 border-b border-border bg-card flex items-center px-4 gap-4">
+          <header className="h-14 bg-gray-800/50 backdrop-blur-sm border-b border-gray-700 flex items-center px-4 gap-4">
             <SidebarTrigger />
-            <h1 className="text-lg sm:text-xl font-bold text-foreground">
+            <h1 className="text-lg sm:text-xl font-bold">
               Admin Dashboard
             </h1>
           </header>

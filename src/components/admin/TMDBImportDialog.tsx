@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -115,6 +116,9 @@ export function TMDBImportDialog({ categories }: { categories: any[] }) {
         <DialogHeader>
           <VisuallyHidden>
             <DialogTitle>Import from TMDB</DialogTitle>
+            <DialogDescription>
+              Search for and import movies from The Movie Database.
+            </DialogDescription>
           </VisuallyHidden>
         </DialogHeader>
 

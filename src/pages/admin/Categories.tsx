@@ -14,6 +14,7 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -82,6 +83,11 @@ export default function Categories() {
                   <DialogTitle>
                     {editingCategory ? "Edit Category" : "Add New Category"}
                   </DialogTitle>
+                  <DialogDescription>
+                    {editingCategory
+                      ? "Update the details of the existing category."
+                      : "Create a new category to organize your movies."}
+                  </DialogDescription>
                 </VisuallyHidden>
               </DialogHeader>
               <CategoryForm
