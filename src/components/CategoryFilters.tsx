@@ -1,62 +1,33 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-}
-
-interface CategoryFiltersProps {
-  categories: Category[];
-  selectedCategory: string | null;
-  onSelectCategory: (slug: string | null) => void;
-}
-
-const quickFilters = [
-  { name: "Trending", color: "bg-warning hover:bg-warning/80" },
-  { name: "Netflix", color: "bg-destructive hover:bg-destructive/80" },
-  { name: "English", color: "bg-warning hover:bg-warning/80" },
-];
-
-export const CategoryFilters = ({
-  categories,
-  selectedCategory,
-  onSelectCategory,
-}: CategoryFiltersProps) => {
+export const CategoryFilters = ({ categories, selectedCategory, onSelectCategory }) => {
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap gap-3 justify-center">
-        {quickFilters.map((filter) => (
-          <Button
-            key={filter.name}
-            variant="secondary"
-            className={`${filter.color} text-white font-semibold px-6 rounded-full`}
-          >
-            {filter.name}
-          </Button>
-        ))}
-      </div>
-
-      <div className="flex flex-wrap gap-2 justify-center">
-        <Badge
-          variant={selectedCategory === null ? "default" : "outline"}
-          className="cursor-pointer px-4 py-2 text-sm"
-          onClick={() => onSelectCategory(null)}
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <button
+        onClick={() => onSelectCategory(null)}
+        className={cn(
+          "px-4 py-3 rounded-lg text-white font-semibold text-center transition-all duration-300",
+          !selectedCategory
+            ? "bg-gradient-to-r from-red-600 to-yellow-500 scale-105 shadow-lg"
+            : "bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700",
+        )}
+      >
+        All
+      </button>
+      {categories.map((category) => (
+        <button
+          key={category.id}
+          onClick={() => onSelectCategory(category.slug)}
+          className={cn(
+            "px-4 py-3 rounded-lg text-white font-semibold text-center transition-all duration-300",
+            selectedCategory === category.slug
+              ? "bg-gradient-to-r from-red-600 to-yellow-500 scale-105 shadow-lg"
+              : "bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700",
+          )}
         >
-          All
-        </Badge>
-        {categories.map((category) => (
-          <Badge
-            key={category.id}
-            variant={selectedCategory === category.slug ? "default" : "outline"}
-            className="cursor-pointer px-4 py-2 text-sm"
-            onClick={() => onSelectCategory(category.slug)}
-          >
-            {category.name}
-          </Badge>
-        ))}
-      </div>
+          {category.name}
+        </button>
+      ))}
     </div>
   );
 };

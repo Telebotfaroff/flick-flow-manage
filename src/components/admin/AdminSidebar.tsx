@@ -1,4 +1,4 @@
-import { Film, Grid3x3, LayoutDashboard, Home, Download } from "lucide-react";
+import { Film, Grid3x3, LayoutDashboard, Home, Download, PlusSquare } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
   Sidebar,
@@ -15,6 +15,7 @@ import {
 const items = [
   { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
   { title: "Movies", url: "/admin/movies", icon: Film },
+  { title: "Add Movie", url: "/admin/add-movie", icon: PlusSquare },
   { title: "Import from TMDB", url: "/admin/import", icon: Download },
   { title: "Categories", url: "/admin/categories", icon: Grid3x3 },
   { title: "Back to Site", url: "/", icon: Home },

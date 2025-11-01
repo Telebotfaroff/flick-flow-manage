@@ -1,37 +1,22 @@
-import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
 
-interface SearchBarProps {
-  value: string;
-  onChange: (value: string) => void;
-  onSearch: () => void;
-}
-
-export const SearchBar = ({ value, onChange, onSearch }: SearchBarProps) => {
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      onSearch();
-    }
-  };
-
+export const SearchBar = ({ value, onChange, onSearch }) => {
   return (
-    <div className="flex gap-2 w-full max-w-4xl mx-auto">
-      <div className="relative flex-1">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+    <div className="flex w-full items-center space-x-2 rounded-lg bg-gray-800 p-2 shadow-md">
+      <div className="relative flex-grow">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
         <Input
           type="text"
-          placeholder="Search movies..."
+          placeholder="Search ..."
           value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onKeyPress={handleKeyPress}
-          className="pl-10 bg-secondary border-border focus:border-primary h-12 text-base"
+          onChange={onChange}
+          onKeyPress={(e) => e.key === 'Enter' && onSearch()}
+          className="w-full bg-transparent pl-10 pr-4 py-2 text-white placeholder:text-gray-400 border-none focus:ring-0"
         />
       </div>
-      <Button
-        onClick={onSearch}
-        className="bg-primary hover:bg-primary/90 text-primary-foreground h-12 px-8 font-semibold"
-      >
+      <Button type="submit" onClick={onSearch} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg px-6 rounded-md">
         Search
       </Button>
     </div>

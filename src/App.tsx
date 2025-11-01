@@ -11,6 +11,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import Movies from "./pages/admin/Movies";
 import Categories from "./pages/admin/Categories";
 import Import from "./pages/admin/Import";
+import AddMovie from "./pages/admin/AddMovie";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="movies" element={<Movies />} />
+            <Route path="add-movie" element={<AddMovie />} />
             <Route path="import" element={<Import />} />
             <Route path="categories" element={<Categories />} />
           </Route>
