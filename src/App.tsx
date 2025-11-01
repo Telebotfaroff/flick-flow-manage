@@ -9,6 +9,7 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import Movies from "./pages/admin/Movies";
 import Categories from "./pages/admin/Categories";
+import Import from "./pages/admin/Import";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="movies" element={<Movies />} />
+            <Route path="import" element={<Import />} />
             <Route path="categories" element={<Categories />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
