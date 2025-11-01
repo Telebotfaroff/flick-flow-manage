@@ -21,6 +21,7 @@ import {
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export default function Categories() {
   const [open, setOpen] = useState(false);
@@ -77,9 +78,11 @@ export default function Categories() {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>
-                  {editingCategory ? "Edit Category" : "Add New Category"}
-                </DialogTitle>
+                <VisuallyHidden>
+                  <DialogTitle>
+                    {editingCategory ? "Edit Category" : "Add New Category"}
+                  </DialogTitle>
+                </VisuallyHidden>
               </DialogHeader>
               <CategoryForm
                 category={editingCategory}

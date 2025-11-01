@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/select";
 import { Download, Search } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface TMDBMovie {
   id: number;
@@ -112,7 +113,9 @@ export function TMDBImportDialog({ categories }: { categories: any[] }) {
       </DialogTrigger>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Import from TMDB</DialogTitle>
+          <VisuallyHidden>
+            <DialogTitle>Import from TMDB</DialogTitle>
+          </VisuallyHidden>
         </DialogHeader>
 
         <div className="space-y-4">

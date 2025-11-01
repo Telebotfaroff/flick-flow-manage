@@ -29,6 +29,7 @@ import {
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { TMDBImportDialog } from "@/components/admin/TMDBImportDialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export default function Movies() {
   const [open, setOpen] = useState(false);
@@ -95,9 +96,11 @@ export default function Movies() {
             </DialogTrigger>
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>
-                {editingMovie ? "Edit Movie" : "Add New Movie"}
-              </DialogTitle>
+              <VisuallyHidden>
+                <DialogTitle>
+                  {editingMovie ? "Edit Movie" : "Add New Movie"}
+                </DialogTitle>
+              </VisuallyHidden>
             </DialogHeader>
             <MovieForm
               movie={editingMovie}

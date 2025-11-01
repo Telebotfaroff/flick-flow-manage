@@ -1,8 +1,71 @@
 import { Outlet } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { useState } from "react";
 
 export default function AdminLayout() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username === "Faroff" && password === "Faroff123@") {
+      setIsAuthenticated(true);
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-background">
+        <form onSubmit={handleSubmit} className="p-8 space-y-4 bg-card rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-center text-foreground">Admin Access</h2>
+          <div>
+            <label
+              htmlFor="username"
+              className="block mb-2 text-sm font-medium text-foreground"
+            >
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-4 py-2 border rounded-lg bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="password"
+              className="block mb-2 text-sm font-medium text-foreground"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-2 border rounded-lg bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+          {error && <p className="text-sm text-red-500">Invalid username or password</p>}
+          <button
+            type="submit"
+            className="w-full px-4 py-2 font-semibold text-white rounded-lg bg-primary hover:bg-primary/90"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    );
+  }
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
@@ -10,7 +73,9 @@ export default function AdminLayout() {
         <div className="flex-1 flex flex-col">
           <header className="h-14 border-b border-border bg-card flex items-center px-4 gap-4">
             <SidebarTrigger />
-            <h1 className="text-lg sm:text-xl font-bold text-foreground">Admin Dashboard</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-foreground">
+              Admin Dashboard
+            </h1>
           </header>
           <main className="flex-1 p-6">
             <Outlet />

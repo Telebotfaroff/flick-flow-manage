@@ -153,30 +153,27 @@ const Index = () => {
                       {currentPage > 1 && (
                         <PaginationItem>
                           <PaginationPrevious
-                            asChild
+                            to={createPageUrl(currentPage - 1)}
                             className="hover:bg-gray-700"
-                          >
-                            <Link to={createPageUrl(currentPage - 1)}>Previous</Link>
-                          </PaginationPrevious>
+                          />
                         </PaginationItem>
                       )}
                       {Array.from({ length: pageCount }, (_, i) => i + 1).map(
                         (page) => (
                           <PaginationItem key={page}>
                             <PaginationLink
-                              asChild
+                              to={createPageUrl(page)}
+                              isActive={currentPage === page}
                               className={currentPage === page ? "bg-gray-700" : "hover:bg-gray-700"}
                             >
-                              <Link to={createPageUrl(page)}>{page}</Link>
+                              {page}
                             </PaginationLink>
                           </PaginationItem>
                         )
                       )}
                       {currentPage < pageCount && (
                         <PaginationItem>
-                          <PaginationNext asChild className="hover:bg-gray-700">
-                            <Link to={createPageUrl(currentPage + 1)}>Next</Link>
-                          </PaginationNext>
+                          <PaginationNext to={createPageUrl(currentPage + 1)} className="hover:bg-gray-700" />
                         </PaginationItem>
                       )}
                     </PaginationContent>

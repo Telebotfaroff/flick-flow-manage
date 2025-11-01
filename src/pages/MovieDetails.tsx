@@ -25,12 +25,28 @@ export default function MovieDetails() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("movies")
-        .select("*, categories(name, slug)")
+        .select("*, categories(id, name, slug)")
         .eq("id", id)
         .single();
       if (error) throw error;
       return data;
     },
+  });
+
+  const { data: relatedMovies = [] } = useQuery({
+    queryKey: ["related-movies", movie?.categories?.id, id],
+    queryFn: async () => {
+      if (!movie?.categories?.id) return [];
+      const { data, error } = await supabase
+        .from("movies")
+        .select("id, title, poster_url, categories(name, slug)")
+        .eq("category_id", movie.categories.id)
+        .neq("id", id)
+        .limit(6);
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!movie,
   });
 
   if (isLoading) {
@@ -170,6 +186,31 @@ export default function MovieDetails() {
             </div>
           </div>
         </div>
+
+        {relatedMovies.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-3xl font-bold mb-6">Related Movies</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {relatedMovies.map((relatedMovie) => (
+                <div key={relatedMovie.id} className="cursor-pointer group" onClick={() => navigate(`/movie/${relatedMovie.id}`)}>
+                  <div className="overflow-hidden rounded-lg">
+                    {relatedMovie.poster_url && (
+                      <img
+                        src={relatedMovie.poster_url}
+                        alt={relatedMovie.title}
+                        className="w-full h-auto object-cover rounded-lg shadow-lg transform transition-transform duration-300 group-hover:scale-110"
+                      />
+                    )}
+                  </div>
+                  <h3 className="text-lg font-semibold mt-2 group-hover:text-yellow-500">{relatedMovie.title}</h3>
+                  {relatedMovie.categories && (
+                    <p className="text-sm text-gray-400">{relatedMovie.categories.name}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
