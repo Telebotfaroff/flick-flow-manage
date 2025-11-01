@@ -1,1 +1,4 @@
 project_id = "neyenfinkvfmwmvmydju"
+
+[functions.tmdb-import]
+verify_jwt = false

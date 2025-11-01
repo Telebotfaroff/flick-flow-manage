@@ -26,8 +26,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, Pencil, Trash2 } from "lucide-react";
+import { Plus, Pencil, Trash2, Download } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { TMDBImportDialog } from "@/components/admin/TMDBImportDialog";
 
 export default function Movies() {
   const [open, setOpen] = useState(false);
@@ -80,17 +81,19 @@ export default function Movies() {
           <h2 className="text-3xl font-bold text-foreground">Movies</h2>
           <p className="text-muted-foreground">Manage your movie collection</p>
         </div>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <Button
-              onClick={() => setEditingMovie(null)}
-              className="bg-primary hover:bg-primary/90"
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              Add Movie
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="flex gap-2">
+          <TMDBImportDialog categories={categories} />
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <Button
+                onClick={() => setEditingMovie(null)}
+                className="bg-primary hover:bg-primary/90"
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                Add Movie
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>
                 {editingMovie ? "Edit Movie" : "Add New Movie"}
@@ -106,6 +109,7 @@ export default function Movies() {
             />
           </DialogContent>
         </Dialog>
+        </div>
       </div>
 
       <div className="border border-border rounded-lg overflow-hidden">
