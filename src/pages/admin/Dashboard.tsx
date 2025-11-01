@@ -60,12 +60,16 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-3xl font-bold text-foreground">Dashboard</h2>
-        <p className="text-muted-foreground">Overview of your movie platform</p>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl sm:text-3xl">Dashboard</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">Overview of your movie platform</p>
+        </CardContent>
+      </Card>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
         {stats.map((stat) => (
           <Card key={stat.title}>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -75,7 +79,7 @@ export default function Dashboard() {
               <stat.icon className={`h-5 w-5 ${stat.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-foreground">{stat.value}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-foreground">{stat.value}</div>
             </CardContent>
           </Card>
         ))}

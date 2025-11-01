@@ -26,7 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, Pencil, Trash2, Download } from "lucide-react";
+import { Plus, Pencil, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { TMDBImportDialog } from "@/components/admin/TMDBImportDialog";
 
@@ -76,18 +76,18 @@ export default function Movies() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-foreground">Movies</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground">Movies</h2>
           <p className="text-muted-foreground">Manage your movie collection</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full sm:w-auto">
           <TMDBImportDialog categories={categories} />
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button
                 onClick={() => setEditingMovie(null)}
-                className="bg-primary hover:bg-primary/90"
+                className="bg-primary hover:bg-primary/90 w-full sm:w-auto"
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Add Movie
@@ -112,26 +112,26 @@ export default function Movies() {
         </div>
       </div>
 
-      <div className="border border-border rounded-lg overflow-hidden">
+      <div className="border border-border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>Title</TableHead>
               <TableHead>Category</TableHead>
-              <TableHead>Year</TableHead>
-              <TableHead>Rating</TableHead>
-              <TableHead>Views</TableHead>
+              <TableHead className="hidden md:table-cell">Year</TableHead>
+              <TableHead className="hidden md:table-cell">Rating</TableHead>
+              <TableHead className="hidden lg:table-cell">Views</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {movies.map((movie) => (
               <TableRow key={movie.id}>
-                <TableCell className="font-medium">{movie.title}</TableCell>
+                <TableCell className="font-medium max-w-xs truncate">{movie.title}</TableCell>
                 <TableCell>{movie.categories?.name || "N/A"}</TableCell>
-                <TableCell>{movie.year || "N/A"}</TableCell>
-                <TableCell>{movie.rating || "N/A"}</TableCell>
-                <TableCell>{movie.views || 0}</TableCell>
+                <TableCell className="hidden md:table-cell">{movie.year || "N/A"}</TableCell>
+                <TableCell className="hidden md:table-cell">{movie.rating || "N/A"}</TableCell>
+                <TableCell className="hidden lg:table-cell">{movie.views || 0}</TableCell>
                 <TableCell className="text-right">
                   <Button
                     variant="ghost"
@@ -233,7 +233,7 @@ function MovieForm({
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-medium">Poster URL</label>
           <Input
@@ -254,7 +254,7 @@ function MovieForm({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
           <label className="text-sm font-medium">Year</label>
           <Input

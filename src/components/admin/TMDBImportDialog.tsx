@@ -116,7 +116,7 @@ export function TMDBImportDialog({ categories }: { categories: any[] }) {
         </DialogHeader>
 
         <div className="space-y-4">
-          <form onSubmit={handleSearch} className="flex gap-2">
+          <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2">
             <Input
               placeholder="Search for movies..."
               value={searchQuery}
@@ -151,13 +151,13 @@ export function TMDBImportDialog({ categories }: { categories: any[] }) {
                 {searchResults.map((movie) => (
                   <div
                     key={movie.id}
-                    className="border border-border rounded-lg p-4 flex gap-4"
+                    className="border border-border rounded-lg p-4 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4"
                   >
                     {movie.poster_path && (
                       <img
                         src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
                         alt={movie.title}
-                        className="w-20 h-30 object-cover rounded"
+                        className="w-24 h-36 object-cover rounded flex-shrink-0"
                       />
                     )}
                     <div className="flex-1">
@@ -165,7 +165,7 @@ export function TMDBImportDialog({ categories }: { categories: any[] }) {
                       <p className="text-sm text-muted-foreground line-clamp-2">
                         {movie.overview}
                       </p>
-                      <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 mt-2 text-sm text-muted-foreground">
                         <span>{movie.release_date?.split("-")[0]}</span>
                         <span>•</span>
                         <span>⭐ {movie.vote_average?.toFixed(1)}</span>

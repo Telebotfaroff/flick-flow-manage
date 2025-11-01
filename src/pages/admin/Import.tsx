@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -104,12 +105,16 @@ export default function Import() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-3xl font-bold text-foreground">Import from TMDB</h2>
-        <p className="text-muted-foreground">
-          Search and import movies from The Movie Database
-        </p>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-3xl">Import from TMDB</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">
+            Search and import movies from The Movie Database
+          </p>
+        </CardContent>
+      </Card>
 
       <div className="space-y-4">
         <form onSubmit={handleSearch} className="flex gap-2">

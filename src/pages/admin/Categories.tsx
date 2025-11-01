@@ -18,6 +18,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -58,39 +59,41 @@ export default function Categories() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-3xl font-bold text-foreground">Categories</h2>
-          <p className="text-muted-foreground">Manage movie categories</p>
-        </div>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger asChild>
-            <Button
-              onClick={() => setEditingCategory(null)}
-              className="bg-primary hover:bg-primary/90"
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              Add Category
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>
-                {editingCategory ? "Edit Category" : "Add New Category"}
-              </DialogTitle>
-            </DialogHeader>
-            <CategoryForm
-              category={editingCategory}
-              onClose={() => {
-                setOpen(false);
-                setEditingCategory(null);
-              }}
-            />
-          </DialogContent>
-        </Dialog>
-      </div>
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between gap-4">
+          <div>
+            <CardTitle className="text-2xl sm:text-3xl">Categories</CardTitle>
+            <p className="text-muted-foreground">Manage movie categories</p>
+          </div>
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+              <Button
+                onClick={() => setEditingCategory(null)}
+                className="bg-primary hover:bg-primary/90 w-full sm:w-auto"
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                Add Category
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  {editingCategory ? "Edit Category" : "Add New Category"}
+                </DialogTitle>
+              </DialogHeader>
+              <CategoryForm
+                category={editingCategory}
+                onClose={() => {
+                  setOpen(false);
+                  setEditingCategory(null);
+                }}
+              />
+            </DialogContent>
+          </Dialog>
+        </CardHeader>
+      </Card>
 
-      <div className="border border-border rounded-lg overflow-hidden">
+      <div className="border border-border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>

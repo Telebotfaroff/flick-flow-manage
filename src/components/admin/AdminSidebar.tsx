@@ -25,10 +25,10 @@ export function AdminSidebar() {
   const collapsed = state === "collapsed";
 
   return (
-    <Sidebar collapsible="icon">
-      <SidebarContent>
+    <Sidebar collapsible="icon" className="text-blue-900 border-r border-blue-200">
+      <SidebarContent className="bg-blue-100">
         <SidebarGroup>
-          <SidebarGroupLabel>Admin Panel</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-blue-900/50">Admin Panel</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -38,12 +38,13 @@ export function AdminSidebar() {
                       to={item.url}
                       end={item.url === "/admin"}
                       className={({ isActive }) =>
-                        isActive
-                          ? "bg-primary text-primary-foreground hover:bg-primary"
-                          : ""
+                        `flex items-center gap-3 rounded-md px-3 py-2 transition-all ${collapsed ? 'justify-center' : ''} ` +
+                        (isActive
+                          ? "bg-blue-200 text-blue-900 font-semibold"
+                          : "hover:bg-blue-200/50")
                       }
                     >
-                      <item.icon />
+                      <item.icon className="h-5 w-5" />
                       {!collapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
