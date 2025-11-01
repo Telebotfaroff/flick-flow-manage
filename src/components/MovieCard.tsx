@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Film, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface MovieCardProps {
   id: string;
@@ -11,7 +12,8 @@ interface MovieCardProps {
   created_at: string;
 }
 
-export const MovieCard = ({ title, poster_url, year, rating, created_at }: MovieCardProps) => {
+export const MovieCard = ({ id, title, poster_url, year, rating, created_at }: MovieCardProps) => {
+  const navigate = useNavigate();
   const formattedDate = new Date(created_at).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
@@ -19,7 +21,10 @@ export const MovieCard = ({ title, poster_url, year, rating, created_at }: Movie
   });
 
   return (
-    <Card className="group relative overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300 cursor-pointer">
+    <Card 
+      className="group relative overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300 cursor-pointer"
+      onClick={() => navigate(`/movie/${id}`)}
+    >
       <div className="aspect-[2/3] relative overflow-hidden bg-secondary">
         {poster_url ? (
           <img
