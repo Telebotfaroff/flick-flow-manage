@@ -113,7 +113,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar categories={categories} />
 
       <main className="container mx-auto px-4 py-8">
@@ -133,11 +133,11 @@ const Index = () => {
         <div className="mt-12">
           {isLoading ? (
             <div className="flex items-center justify-center py-20">
-              <Loader2 className="w-12 h-12 animate-spin text-yellow-500" />
+              <Loader2 className="w-12 h-12 animate-spin text-primary" />
             </div>
           ) : movies.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-gray-400 text-2xl">No movies found</p>
+              <p className="text-muted-foreground text-2xl">No movies found</p>
             </div>
           ) : (
             <>
@@ -154,7 +154,6 @@ const Index = () => {
                         <PaginationItem>
                           <PaginationPrevious
                             to={createPageUrl(currentPage - 1)}
-                            className="hover:bg-gray-700"
                           />
                         </PaginationItem>
                       )}
@@ -164,7 +163,6 @@ const Index = () => {
                             <PaginationLink
                               to={createPageUrl(page)}
                               isActive={currentPage === page}
-                              className={currentPage === page ? "bg-gray-700" : "hover:bg-gray-700"}
                             >
                               {page}
                             </PaginationLink>
@@ -173,7 +171,7 @@ const Index = () => {
                       )}
                       {currentPage < pageCount && (
                         <PaginationItem>
-                          <PaginationNext to={createPageUrl(currentPage + 1)} className="hover:bg-gray-700" />
+                          <PaginationNext to={createPageUrl(currentPage + 1)} />
                         </PaginationItem>
                       )}
                     </PaginationContent>

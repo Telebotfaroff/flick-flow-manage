@@ -26,10 +26,10 @@ export function AdminSidebar() {
   const collapsed = state === "collapsed";
 
   return (
-    <Sidebar collapsible="icon" className="bg-gray-800/50 backdrop-blur-sm border-r border-gray-700 text-white">
+    <Sidebar collapsible="icon" className="bg-gray-800/50 backdrop-blur-sm border-r border-gray-700 text-white hidden md:block">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-white text-xl font-bold p-3">Admin Panel</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-white text-lg font-bold p-3">Admin Panel</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -39,7 +39,7 @@ export function AdminSidebar() {
                       to={item.url}
                       end={item.url === "/admin"}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 rounded-md px-3 py-2 transition-all text-2xl border border-gray-700 bg-gray-900/50 ${collapsed ? 'justify-center' : ''} ` +
+                        `flex items-center gap-3 rounded-md px-3 py-2 transition-all text-base border border-gray-700 bg-gray-900/50 ${collapsed ? 'justify-center' : ''} ` +
                         (isActive
                           ? "bg-primary/20 text-white font-semibold"
                           : "text-white hover:bg-primary/10")

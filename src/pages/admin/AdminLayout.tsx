@@ -68,10 +68,10 @@ export default function AdminLayout() {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-gray-900 text-white">
+      <div className="min-h-screen md:grid md:grid-cols-[280px_1fr] w-full bg-gray-900 text-white">
         <AdminSidebar />
         <div className="flex-1 flex flex-col">
-          <header className="h-14 bg-gray-800/50 backdrop-blur-sm border-b border-gray-700 flex items-center px-4 gap-4">
+          <header className="h-14 bg-gray-800/50 backdrop-blur-sm border-b border-gray-700 flex items-center px-4 gap-4 md:hidden">
             <SidebarTrigger />
             <h1 className="text-lg sm:text-xl font-bold">
               Admin Dashboard
